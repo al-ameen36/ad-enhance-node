@@ -47,7 +47,7 @@ app.get("/post/:post_id", async (req, res) => {
   res.send({ post: post.data });
 });
 
-app.get("/post/:post_id/delete", async (req, res) => {
+app.delete("/post/:post_id/delete", async (req, res) => {
   const post = await supabase
     .from("posts")
     .delete()
@@ -91,16 +91,16 @@ app.get("/post/:post_id/comments", async (req, res) => {
 });
 
 app.get("/post/:post_id/like", async (req, res) => {
-  const { data, error } = await supabase.rpc(`increment_likes`, {
-    post_id: req.params.post_id,
+  const data = await supabase.rpc(`increment_likes`, {
+    row_id: req.params.post_id,
   });
 
   res.send(data);
 });
 
 app.get("/post/:post_id/view", async (req, res) => {
-  const { data, error } = await supabase.rpc(`increment_views`, {
-    post_id: req.params.post_id,
+  const data = await supabase.rpc(`increment_views`, {
+    row_id: req.params.post_id,
   });
 
   res.send(data);

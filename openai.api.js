@@ -30,6 +30,5 @@ export async function generateAdvice(advert, comments) {
       },
     ],
   });
-  console.log(ai.choices[0].message["content"]);
   return ai.choices[0].message["content"];
 }
