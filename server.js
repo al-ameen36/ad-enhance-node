@@ -52,7 +52,7 @@ app.delete("/post/:post_id/delete", async (req, res) => {
     .from("posts")
     .delete()
     .eq("id", req.params.post_id);
-  res.send({ message: `deleted post ${post_id}` });
+  res.send({ message: `deleted post ${req.params.post_id}` });
 });
 
 app.post("/post/:post_id/comments", async (req, res) => {
